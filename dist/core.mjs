@@ -1,0 +1,3 @@
+export function safeUrl(value){try{const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password&&!u.port&&!/^(localhost|127\.|0\.|\[::1\])/.test(u.hostname)}catch{return false}}
+export function filterTools(tools,query,category,favorites=[],onlyFavorites=false){const q=query.trim().toLocaleLowerCase();return tools.filter(t=>(category==='전체'||t.category===category)&&(!onlyFavorites||favorites.includes(t.id))&&[t.title,t.description,t.category].join(' ').toLocaleLowerCase().includes(q))}
+export function progress(answers,total){const done=Object.values(answers).filter(x=>x===true).length;return {done,total,percent:total?Math.round(done/total*100):0}}
